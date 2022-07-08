@@ -25,5 +25,11 @@
 ### To delete all jobs:
 >click delete all button
 
+### To sort jobs:
+>click on table headings to sort
+
+### To search jobs:
+>input search text and to cancel search click on x
+
 ### Notes:
 >jobs are ordered by default from newest date on top to oldest date on the bottom
