@@ -30,14 +30,6 @@ const Modals = (props) => {
       break;
   }
 
-  // if(props.buttonLabel === 'edit') {
-  //   button = <a href="#" className="edit" title="Edit" data-toggle="tooltip"><i className="material-icons" style={{color:"black"}} onClick={handleShowModal}>&#xE254;</i></a>
-  //   title = 'Update Job';
-  // } else {
-  //   button = <Button className="btn btn-dark" onClick={handleShowModal}>Add Job</Button>
-  //   title = 'Add Job'
-  // }
-
   const jobDetails = (job) => {
     return (
       <div>
@@ -57,7 +49,6 @@ const Modals = (props) => {
 
   return (
     <div className="model_box" style={{ display: 'inline' }}>
-    {/* <div> */}
       {button}
       <Modal
         show={viewModal}

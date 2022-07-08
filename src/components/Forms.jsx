@@ -29,7 +29,6 @@ const Forms = (props) => {
       status: form.status
     };
     props.addJob(newData);
-    // handleClose();
   }
 
   const submitFormUpdate = e => {
@@ -43,7 +42,6 @@ const Forms = (props) => {
     };
     e.preventDefault();
     props.updateJob(newData, props.job);
-    // handleClose();
   }
 
   const onChange = e => {
@@ -54,23 +52,23 @@ const Forms = (props) => {
     <Form onSubmit={props.job ? submitFormUpdate : submitFormAdd}>
       <Form.Group>
         <Form.Label>Job Title</Form.Label>
-        <Form.Control type="text" name="job_title" id="job_title" onChange={onChange} value={form.job_title === null ? '' : form.job_title} />
+        <Form.Control required type="text" name="job_title" id="job_title" onChange={onChange} value={form.job_title === null ? '' : form.job_title} />
       </Form.Group>
       <Form.Group>
         <Form.Label>Job Description</Form.Label>
-        <Form.Control type="text" name="job_description" id="job_description" onChange={onChange} value={form.job_description === null ? '' : form.job_description}  />
+        <Form.Control required type="text" name="job_description" id="job_description" onChange={onChange} value={form.job_description === null ? '' : form.job_description}  />
       </Form.Group>
       <Form.Group>
         <Form.Label>Company</Form.Label>
-        <Form.Control type="text" name="company" id="company" onChange={onChange} value={form.company === null ? '' : form.company}  />
+        <Form.Control required type="text" name="company" id="company" onChange={onChange} value={form.company === null ? '' : form.company}  />
       </Form.Group>
       <Form.Group>
         <Form.Label>Date applied</Form.Label>
-        <Form.Control type="date" name="date_applied" id="date_applied" onChange={onChange} value={form.date_applied === null ? '' : form.date_applied}  />
+        <Form.Control required type="date" name="date_applied" id="date_applied" onChange={onChange} value={form.date_applied === null ? '' : form.date_applied}  />
       </Form.Group>
       <Form.Group>
         <Form.Label>Status</Form.Label>
-        <Form.Control type="text" name="status" id="status" onChange={onChange} value={form.status === null ? '' : form.status}  placeholder="ex: applied, interviewed, offer extended" />
+        <Form.Control required type="text" name="status" id="status" onChange={onChange} value={form.status === null ? '' : form.status}  placeholder="ex: applied, interviewed, offer extended" />
       </Form.Group>
       <Button type="submit">Submit</Button>
     </Form>

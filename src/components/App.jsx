@@ -5,11 +5,13 @@ import JobList from './JobList.jsx';
 
 const App = () => {
    const [jobs, setJobs] = useState([]);
+   const [originalJobs, setOriginal] = useState([]);
 
    useEffect(() => {
       axios.get('/api/jobs')
          .then((res) => {
          setJobs(res.data);
+         setOriginal(res.data);
          })
          .catch((err) => console.error('axios error getting jobs', err));
    }, []);
@@ -21,6 +23,10 @@ const App = () => {
          const jobData = [...prevState, res.data];
          return jobData;
          });
+         setOriginal(prevState => {
+         const jobData = [...prevState, res.data];
+         return jobData;
+         })
       })
       .catch((err)=>{
          console.error('axios error adding job', err);
@@ -32,6 +38,11 @@ const App = () => {
       axios.put(`/api/jobs/${oldJob._id}`, job)
       .then(() => {
          setJobs(prevState => {
+         const jobData = [...prevState];
+         jobData[jobData.indexOf(oldJob)] = job;
+         return jobData;
+         });
+         setOriginal(prevState => {
          const jobData = [...prevState];
          jobData[jobData.indexOf(oldJob)] = job;
          return jobData;
@@ -50,6 +61,11 @@ const App = () => {
          jobData.splice(jobData.indexOf(job), 1);
          return jobData;
          });
+         setOriginal(prevState => {
+         const jobData = [...prevState];
+         jobData.splice(jobData.indexOf(job), 1);
+         return jobData;
+         });
       })
       .catch((err)=>{
          console.error('axios error deleting job', err);
@@ -60,6 +76,7 @@ const App = () => {
       axios.delete(`/api/deletejobs/`)
       .then(()=>{
         setJobs([]);
+        setOriginal([]);
       })
       .catch((err)=>{
         console.error('axios error deleting jobs', err);
@@ -68,7 +85,7 @@ const App = () => {
 
    return (
       <div>
-        <JobList jobs={ jobs } updateJob={ updateJob } deleteJob={ deleteJob } addJob={ addJob } deleteAllJobs={ deleteAllJobs }/>
+        <JobList jobs={ jobs } updateJob={ updateJob } deleteJob={ deleteJob } addJob={ addJob } deleteAllJobs={ deleteAllJobs } setJobs={setJobs} originalJobs={originalJobs}/>
       </div>
    );
 }
