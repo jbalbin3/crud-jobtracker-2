@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 4444;
+const PORT = process.env.PORT || 5555;
 
 app.use(express.static('public'));
 app.use(express.json());
@@ -58,10 +58,10 @@ app.delete('/api/jobs/:id', async (req, res) => {
   }
 });
 
-// DELETE MANY
-app.post('/api/deletejobs', async (req, res) => {
+// DELETE ALL
+app.delete('/api/deletejobs', async (req, res) => {
   try {
-    const data = await Job.deleteMany({_id: {$in: req.body}});
+    const data = await Job.deleteMany({ });
     res.status(200).send(data);
   } catch(error) {
     res.sendStatus(404);
