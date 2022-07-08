@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import jobSchema from './schema.js';
 
+// set database name for storing
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost/job-tracker';
 mongoose.Promise = global.Promise;
 

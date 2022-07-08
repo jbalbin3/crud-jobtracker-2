@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Modal } from 'react-bootstrap';
 import Forms from './Forms.jsx';
 
+// reusable modal component
 const Modals = (props) => {
 
   const [viewModal, setViewModal] = useState(false);
@@ -10,10 +11,11 @@ const Modals = (props) => {
   const handleCloseModal = () => setViewModal(false);
   const handleShowModal = () => setViewModal(true);
 
-  let button = '';
-  let title = '';
-  let viewBody = false;
+  let button = ''; // button for modal
+  let title = ''; // title of modal
+  let viewBody = false; // determines if modal will be view job or add/edit
 
+  // determine what data the modal will display
   switch(props.buttonLabel) {
     case 'edit':
       button = <a href="#" className="edit" title="Edit" data-toggle="tooltip"><i className="material-icons" style={{color:"black"}} onClick={handleShowModal}>&#xE254;</i></a>
@@ -30,6 +32,7 @@ const Modals = (props) => {
       break;
   }
 
+  // job display for view modal
   const jobDetails = (job) => {
     return (
       <div>

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Form } from 'react-bootstrap';
 
+// component used for add and update
 const Forms = (props) => {
 
+  // initial state of form
   const[form, setForm] = useState({
     job_title: '',
     job_description: '',
@@ -11,14 +13,17 @@ const Forms = (props) => {
     status: ''
   })
 
+  // used for updating a job to set form state with current job data
   useEffect(() => {
     if(props.job) {
+      // transform isodate date type to year-month-day format
       props.job.date_applied = props.job.date_applied.substring(0, 10);
       const { job_title, job_description, company, date_applied, status } = props.job;
       setForm({ job_title, job_description, company, date_applied, status });
     }
   },[])
 
+  // add form
   const submitFormAdd = e => {
     e.preventDefault();
     const newData = {
@@ -31,6 +36,7 @@ const Forms = (props) => {
     props.addJob(newData);
   }
 
+  // update form
   const submitFormUpdate = e => {
     e.preventDefault();
     const newData = {
@@ -44,6 +50,7 @@ const Forms = (props) => {
     props.updateJob(newData, props.job);
   }
 
+  // handler for form
   const onChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value});
   }

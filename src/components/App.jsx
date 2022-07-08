@@ -4,9 +4,12 @@ import PropTypes from 'prop-types';
 import JobList from './JobList.jsx';
 
 const App = () => {
+   // state that holds data of jobs viewable by user
    const [jobs, setJobs] = useState([]);
+   //state that holds reset data of jobs viewable after search reset
    const [originalJobs, setOriginal] = useState([]);
 
+   // initialize jobs state from database data
    useEffect(() => {
       axios.get('/api/jobs')
          .then((res) => {
@@ -16,6 +19,7 @@ const App = () => {
          .catch((err) => console.error('axios error getting jobs', err));
    }, []);
 
+   // add job to database and update the jobs state
    function addJob(job) {
       axios.post('/api/jobs', job)
       .then((res) => {
@@ -33,6 +37,7 @@ const App = () => {
       })
    }
 
+   // update job in database and update the jobs state
    function updateJob(job, oldJob) {
       job._id = oldJob._id;
       axios.put(`/api/jobs/${oldJob._id}`, job)
@@ -53,6 +58,7 @@ const App = () => {
       })
    }
 
+   // delete job from database and update the jobs state
    function deleteJob(job) {
       axios.delete(`/api/jobs/${job._id}`, {params: {id: job._id}})
       .then((res) => {
@@ -72,6 +78,7 @@ const App = () => {
       })
    }
 
+   // delete all jobs from database and update the jobs state
    function deleteAllJobs() {
       axios.delete(`/api/deletejobs/`)
       .then(()=>{
