@@ -59,7 +59,7 @@ app.delete('/api/jobs/:id', async (req, res) => {
 });
 
 // DELETE ALL
-app.delete('/api/deletejobs', async (req, res) => {
+app.delete('/api/jobs', async (req, res) => {
   try {
     const data = await Job.deleteMany({ });
     res.status(200).send(data);
